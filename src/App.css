@@ -203,3 +203,70 @@ nav ul li a:hover {
   transform: scale(1.2);
   color: #FFD700; /* gold yellow */
 }
+
+/* --- YouTube Section --- */
+.youtube-section {
+  /* small top spacing so About Me doesn't feel cramped */
+  padding: 3.5rem 2.25rem 5rem; /* top/right/left/bottom */
+  background: transparent;     /* keep section subtle (no heavy block) */
+  border-radius: 0.6rem;       /* optional soft corners */
+}
+
+.yt-title {
+  display: inline-block;               /* makes it pill-shaped instead of full width */
+  text-transform: uppercase;           /* full caps */
+  background-color: #fff8d6;           /* light, soft yellow */
+  color: #222;                         /* dark text for contrast */
+  padding: 0.5rem 1.1rem;              /* vertical / horizontal padding (button feel) */
+  border-radius: 999px;                /* pill shape */
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: 0.8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+  margin: 0 0 3.25rem 0;               /* space *after* the pill */
+  cursor: default;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+
+
+.youtube-section { text-align: center; }
+
+.yt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* exactly 3 per row */
+  gap: 1.5rem;
+}
+
+.yt-card {
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.yt-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.yt-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.yt-caption {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  line-height: 1.4;
+  color: #333;
+  background: #fff;
+}
