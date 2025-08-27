@@ -3,7 +3,7 @@
 
 const API_KEY = "AIzaSyDSIFbUphG08rqzc7mlWe_fiDVcpvsAk2E"; // <-- replace exactly
 const CHANNEL_ID = "UCknPQ1aaPOTUCuy6wb2ufJQ"; // <-- replace exactly
-const MAX_RESULTS = 100; // ask for more, we’ll slice later
+const MAX_RESULTS = 25; // ask for more, we’ll slice later
 
 export default async function fetchVideos() {
   const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${MAX_RESULTS}`;
