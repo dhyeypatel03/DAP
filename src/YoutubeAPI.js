@@ -7,7 +7,7 @@
 
 export default async function fetchVideos() {
   try {
-    const response = await fetch("/videos.json"); // served from public/
+    const response = await fetch(`${process.env.PUBLIC_URL}/videos.json`) // served from public/
     if (!response.ok) throw new Error("Failed to load videos.json");
 
     const data = await response.json();
