@@ -1,4 +1,7 @@
-/* Reset */
+/* ================================================================ */
+/* =================== 1. BASE & RESET STYLES =================== */
+/* ================================================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +14,12 @@ body {
   color: #333;
 }
 
-/* Navbar */
+
+/* ================================================================ */
+/* =================== 2. COMPONENT STYLES (Desktop First) ======== */
+/* ================================================================ */
+
+/* --- Navbar --- */
 nav {
   background-color: #1e293b;
   padding: 1rem;
@@ -22,6 +30,7 @@ nav ul {
   justify-content: center;
   list-style: none;
   gap: 2rem;
+  flex-wrap: wrap; /* Good practice for all screen sizes */
 }
 
 nav ul li a {
@@ -34,7 +43,7 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* ================= HERO SECTION ================= */
+/* --- Hero Section --- */
 #hero {
   width: 100%;
   min-height: 100vh;
@@ -46,11 +55,11 @@ nav ul li a:hover {
   text-align: center;
   color: #0f172a;
   padding: 4rem 1rem;
-  max-width: 100% !important;
-  margin: 0;
-
-  /* Background image */
-  background: url("./port.jpg") no-repeat center center/cover;
+  /* Default DESKTOP background image */
+  background-image: url("./port.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .hero-container {
@@ -67,7 +76,6 @@ nav ul li a:hover {
   margin-bottom: 2rem;
 }
 
-/* Social Links as Text */
 .social-link {
   font-size: 2rem;
   font-weight: 600;
@@ -85,45 +93,22 @@ nav ul li a:hover {
   color: #ff0000;
 }
 
-/* Profile image */
-.profile-img {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 6px solid #ffd00063;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
-  transition: all 0.4s ease;
-}
-
-.profile-img:hover {
-  filter: grayscale(100%);
-  transform: scale(1.08);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-}
-
 .profile-img {
   width: 230px;
   height: 230px;
+  border-radius: 50%;
   object-fit: cover;
   border: 6px solid #ffd00063;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
-  margin: 0 36px;
-  border-radius: 50%;
   transition: all 0.4s ease-in-out;
+  margin: 0 36px;
 }
+
 .profile-img:hover {
   filter: grayscale(100%);
   transform: scale(1.1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
-/* Role line text */
-.lead {
-  margin-top: 1rem;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #444;
-}
 
 .lead {
   margin-top: 1rem;
@@ -132,10 +117,9 @@ nav ul li a:hover {
   color: #444;
 }
 
-/* Links inside role text */
 .role-link {
-  margin: 0 0.6rem;   /* spacing between links */
-  padding: 0 0.3rem;  /* extra buffer so they don't collide when scaling */
+  margin: 0 0.6rem;
+  padding: 0 0.3rem;
   transition: transform 0.3s cubic-bezier(.4,2,.6,1), color 0.3s;
   display: inline-block;
   color: #333;
@@ -148,17 +132,14 @@ nav ul li a:hover {
   color: #6a11cb;
 }
 
-
-/* ================= ABOUT SECTION ================= */
+/* --- About Section --- */
 .about-section {
   position: relative;
   background: #ffffff;
-  border-radius: 60px;         /* capsule look */
+  border-radius: 60px;
   padding: 4rem 2rem;
-  margin-top: 6rem;            /* space above About */
+  margin: 6rem auto 0 auto;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   text-align: center;
 }
@@ -179,64 +160,48 @@ nav ul li a:hover {
   padding-bottom: 10px;
 }
 
-/* Soft background curve effect */
-.about-section::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  height: 80px;
-  border-radius: 50px;
-  z-index: -1;
-}
-/* Base words */
 .highlight-text span {
   display: inline-block;
   transition: transform 0.25s ease, color 0.25s ease;
   cursor: default;
 }
 
-/* Hover effect */
 .highlight-text span:hover {
   transform: scale(1.2);
-  color: #FFD700; /* gold yellow */
+  color: #FFD700;
 }
 
 /* --- YouTube Section --- */
 .youtube-section {
-  /* small top spacing so About Me doesn't feel cramped */
-  padding: 3.5rem 2.25rem 5rem; /* top/right/left/bottom */
-  background: transparent;     /* keep section subtle (no heavy block) */
-  border-radius: 0.6rem;       /* optional soft corners */
+  padding: 3.5rem 1rem 5rem;
+  text-align: center;
+  background: transparent;
 }
 
 .yt-title {
-  display: inline-block;               /* makes it pill-shaped instead of full width */
-  text-transform: uppercase;           /* full caps */
-  background-color: #fff8d6;           /* light, soft yellow */
-  color: #222;                         /* dark text for contrast */
-  padding: 0.5rem 1.1rem;              /* vertical / horizontal padding (button feel) */
-  border-radius: 999px;                /* pill shape */
+  display: inline-block;
+  text-transform: uppercase;
+  background-color: #fff8d6;
+  color: #222;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
   font-weight: 700;
   font-size: 1.9rem;
   letter-spacing: 0.8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
   border: 1px solid rgba(0,0,0,0.04);
-  margin: 0 0 3.25rem 0;               /* space *after* the pill */
+  margin: 0 0 3.25rem 0;
   cursor: default;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-
-
-.youtube-section { text-align: center; }
-
 .yt-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* exactly 3 per row */
+  /* MOBILE-FIRST: Default to 1 column */
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .yt-card {
@@ -269,4 +234,101 @@ nav ul li a:hover {
   line-height: 1.4;
   color: #333;
   background: #fff;
+}
+
+
+/* ================================================================ */
+/* =================== 3. RESPONSIVE MEDIA QUERIES ================ */
+/* ================================================================ */
+
+/* For screens smaller than 768px (most phones) */
+@media (max-width: 767px) {
+
+  /* --- Hero Section Fixes --- */
+  #hero {
+    /* Swaps in your new MOBILE background image */
+    background-image: url("./vertical.jpg"); 
+    background-size: cover; /* Use cover now that the image has the right ratio */
+    background-position: center center;
+  }
+
+  .hero-container {
+    gap: 1.25rem;
+  }
+
+  .hero-container > * {
+    position: static !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  .socials-wrapper {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .social-link {
+    font-size: 1.5rem;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+  }
+
+  .hero-container h1, .hero-container h2 {
+    font-size: 2rem; 
+  }
+
+  .lead {
+    background-color: #ffd000;
+    color: #1e293b;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    margin-top: 0;
+    max-width: 90%;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* --- Other Section Fixes --- */
+  .about-section {
+    padding: 3rem 1rem;
+    border-radius: 30px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .about-section h2, .yt-title {
+    font-size: 1.8rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
+}
+
+/* --- Responsive Grid for YouTube Section --- */
+
+/* For tablets (and up) */
+@media (min-width: 768px) {
+  .yt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .youtube-section {
+      padding-left: 2rem;
+      padding-right: 2rem;
+  }
+}
+
+/* For desktops (and up) */
+@media (min-width: 1024px) {
+  .yt-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
