@@ -12,7 +12,7 @@ export default async function fetchVideos() {
 
     const data = await response.json();
 return data.items
-  .slice(0, 12)   // <-- limit to 6 videos
+  .slice(0, 500)   // <-- limit to 6 videos
   .map((video) => ({
     id: video.id,
     title: video.snippet.title,

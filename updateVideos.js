@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCknPQ1aaPOTUCuy6wb2ufJQ";
-const MAX_RESULTS =25; // change if you want fewer
+const MAX_RESULTS =50; // change if you want fewer
 
 if (!API_KEY || !CHANNEL_ID) {
   console.error("❌ Missing env vars: set YOUTUBE_API_KEY and CHANNEL_ID");

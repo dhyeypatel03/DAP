@@ -138,7 +138,7 @@ nav ul li a:hover {
   background: #ffffff;
   border-radius: 60px;
   padding: 4rem 2rem;
-  margin: 6rem auto 0 auto;
+  margin: 6rem auto; /* top and bottom = 6rem, left & right = auto */
   max-width: 1000px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   text-align: center;
@@ -312,7 +312,35 @@ nav ul li a:hover {
     font-size: 1rem;
   }
 }
+/* You can remove the old .App styles if they are still there */
 
+/* This is the container for our sticky effect section.
+  We make it 200vh tall, so there is space to scroll.
+*/
+.gallery-container {
+  position: relative;
+  height: 200vh; /* This determines how long you scroll over the effect */
+}
+
+/* This holds the 3D canvas.
+  'position: sticky' makes it stick to the top of the screen
+  while its container (.gallery-container) is being scrolled.
+*/
+.gallery-canvas {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+/* This ensures your EffectBlock component has a transparent background 
+  and is layered on top of the canvas.
+*/
+.EffectBlock {
+  position: relative;
+  z-index: 1; /* Puts it on a layer above the canvas */
+  background-color: transparent;
+}
 /* --- Responsive Grid for YouTube Section --- */
 
 /* For tablets (and up) */
@@ -330,5 +358,98 @@ nav ul li a:hover {
 @media (min-width: 1024px) {
   .yt-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+
+
+
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 200vh; /* enough space for scrolling */
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #2575fc);
+  color: white;
+  text-align: center;
+  margin-bottom: -5vh;
+}
+
+
+.split-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;        /* wrap letters on small screens */
+  max-width: 90%;         /* stay inside screen */
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ================================================================ */
+/* =================== SplitText / Text Styling ================== */
+/* ================================================================ */
+
+.char {
+  display: inline-block;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);  /* responsive font size */
+  -webkit-text-stroke: 2px red;          /* border */
+  text-stroke: 2px red;
+  color: #00b7ff;
+  margin: 0 2px;
+}
+
+.split-parent {
+  display: inline-block;
+  transform-origin: center;   /* keep scaling centered */
+  max-width: 100%;            /* prevent overflow */
+  overflow: hidden;
+}
+
+.split-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;               /* desktop container height */
+  text-align: center;
+}
+
+/* ================================================================ */
+/* =================== Mobile Adjustments ======================== */
+/* ================================================================ */
+
+@media (max-width: 767px) {
+  .char {
+    font-size: 1.5rem;              /* smaller letters on phones */
+    -webkit-text-stroke: 1.2px red; /* thinner border */
+    text-stroke: 1.2px red;
+    margin: 0 1px;
+  }
+
+  .split-parent {
+    max-width: 90%;                 /* container fits mobile screen */
+    transform: scale(1);            /* avoid over-zoom start */
+  }
+
+  .split-text-container {
+    height: 30vh;                   /* smaller container height */
+    padding: 0 1rem;                /* padding to prevent edge overflow */
+  }
+}
+@media (max-width: 767px) {
+  .info-block-container {
+    display: none;
   }
 }
