@@ -11,7 +11,7 @@ Built with **React**, **GSAP animations**, and responsive design.
 - Responsive layout for desktop and mobile
 
 ## Live Demo
-[View My Portfolio](https://dhyeypatel03.github.io/HNFD/)
+[View My Portfolio](https://dhyeypatel03.github.io/DAP/)
 
 ## Tech Stack
 - React
