@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './CinematicGallery.css';
 
 const CinematicGallery = () => {
@@ -44,17 +44,17 @@ const CinematicGallery = () => {
 
 
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     const nextIdx = (modalIndex + 1) % images.length;
     setModalIndex(nextIdx);
     setSelectedImage(images[nextIdx]);
-  };
+  }, [modalIndex, images]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     const prevIdx = (modalIndex - 1 + images.length) % images.length;
     setModalIndex(prevIdx);
     setSelectedImage(images[prevIdx]);
-  };
+  }, [modalIndex, images]);
 
   useEffect(() => {
     const handleKeydown = (e) => {
