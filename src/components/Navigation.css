@@ -1,0 +1,74 @@
+.nav {
+  position: fixed;
+  opacity: 0;
+  animation: fadeIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+  top: calc(0.5rem + var(--scroll-progress) * 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(2rem - var(--scroll-progress) * 1.2rem);
+  background: rgba(0, 0, 0, calc(0.01 + var(--scroll-progress) * 0.04));
+  backdrop-filter: blur(calc(3px + var(--scroll-progress) * 3px));
+  padding: calc(1rem - var(--scroll-progress) * 0.4rem) calc(3rem - var(--scroll-progress) * 1.5rem);
+  border-radius: calc(8px + var(--scroll-progress) * 32px);
+  border: 1px solid rgba(255, 255, 255, calc(0.01 + var(--scroll-progress) * 0.03));
+  width: calc(95% - var(--scroll-progress) * 45%);
+  max-width: calc(1200px - var(--scroll-progress) * 700px);
+  transition: none;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, calc(0.5 + var(--scroll-progress) * 0.3));
+  font-size: calc(0.9rem - var(--scroll-progress) * 0.15rem);
+  font-weight: 500;
+  padding: calc(0.4rem - var(--scroll-progress) * 0.1rem) calc(0.8rem - var(--scroll-progress) * 0.3rem);
+  border-radius: calc(6px + var(--scroll-progress) * 14px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav button:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    top: 1rem;
+    width: 95%;
+    max-width: 500px;
+    padding: 0.7rem 0.8rem;
+    gap: 0.3rem;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  
+  .nav button {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: 15px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    width: 98%;
+    max-width: 400px;
+    padding: 0.5rem 0.6rem;
+    gap: 0.2rem;
+  }
+  
+  .nav button {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.3rem;
+  }
+}

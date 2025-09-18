@@ -1,18 +1,18 @@
 import React, { useRef } from "react";
 
 // Imports for your page sections
-import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import YoutubeSection from "./components/YoutubeSection";
-import EffectBlock from "./components/EffectBlock";
+import Projects from "./components/Projects";
 import SplitText from "./components/SplitText";
 import VariableProximity from "./components/VariableProximity";
-
-// Import the Glitch component itself
+import CinematicGallery from "./components/CinematicGallery";
+import ScrollReveal from "./components/ScrollReveal";
+import Navigation from "./components/Navigation";
+import ScrollAnimations from "./components/ScrollAnimations";
 
 // CSS imports
 import "./App.css";
@@ -27,17 +27,58 @@ I enjoy learning new technologies and creating cool projects.
 Sharing knowledge and experiences motivates me every day. 
 Life is all about growth, fun, and new memories!`;
 
+  const domeOptions = {
+    grayscale: false,
+    overlayBlurColor: "transparent",
+    fit: 0.9, // This makes the dome wider to fill the screen
+  };
+
   return (
     <div className="App">
+      <ScrollAnimations />
+      <Navigation />
       {/* All of your page content now goes inside this <main> tag */}
       <main className="page-content">
-        <Navbar />
         <Hero />
 
+        <div id="about">
+          <About />
+        </div>
+        <div className="sanskrit-section">
+          <ScrollReveal
+            baseOpacity={0.3}
+            enableBlur={false}
+            baseRotation={0}
+          >
+                 कर्मण्येवाधिकारस्ते मा फलेषु कदाचन
+
+                (karmaṇyevādhikāraste mā phaleṣu kadācana)
+
+                This timeless wisdom teaches us to focus on our actions, 
+                not the fruits they may bear. Travel is a perfect reflection 
+                of this philosophy—a reminder that true discovery lies not in
+                the destination, but in the richness of the journey itself.     
+
+          </ScrollReveal>
+        </div>
+
+        <div id="gallery">
+          <h1 style={{ textAlign: "center", marginBottom: "2rem", color: "white" }}>
+            My Travel Journey
+          </h1>
+          <CinematicGallery />
+        </div>
+        <div id="videos">
+          <YoutubeSection />
+        </div>
+        <div id="projects">
+          <Projects />
+        </div>
+        
         <div className="app-container">
           {/* Main Heading */}
           <SplitText
-            text="Hello, PEOOPPLE !!"
+            text="It's me, amigos, DAP !!"
             tag="h1"
             delay={100}
             duration={0.6}
@@ -68,11 +109,8 @@ Life is all about growth, fun, and new memories!`;
             />
           </div>
         </div>
+        
 
-        <About />
-        <EffectBlock />
-        <YoutubeSection />
-        <Contact />
         <Footer />
       </main>
     </div>

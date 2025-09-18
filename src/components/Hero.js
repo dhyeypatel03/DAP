@@ -6,6 +6,7 @@ function Hero() {
   return (
     <section id="hero">
       <div className="hero-container">
+        
         <div className="socials-wrapper">
           {/* Instagram */}
           <a

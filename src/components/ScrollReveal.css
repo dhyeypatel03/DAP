@@ -1,0 +1,52 @@
+.scroll-reveal {
+  max-width: 800px;
+  margin: 3rem auto;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.scroll-reveal-text {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  line-height: 1.6;
+  font-weight: 400;
+  color: #c9d1d9;
+  font-style: italic;
+}
+
+.word {
+  display: inline-block;
+}
+
+/* ========================= ENHANCEMENTS — THEME & CONTRAST ========================= */
+/* Non-destructive overrides to ensure readability on dark unified background */
+
+:root {
+  --heading: #ffffff;
+  --text: #c9d1d9;
+  --muted: #8b949e;
+}
+
+.scroll-reveal {
+  color: var(--text);
+}
+
+.scroll-reveal-text {
+  color: var(--text);
+}
+
+.scroll-reveal h2,
+.scroll-reveal h1 {
+  color: var(--heading);
+}
+
+@media (max-width: 768px) {
+  .scroll-reveal {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .scroll-reveal-text {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    line-height: 1.5;
+  }
+}
