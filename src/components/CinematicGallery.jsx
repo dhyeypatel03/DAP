@@ -42,13 +42,7 @@ const CinematicGallery = () => {
 
   const [modalIndex, setModalIndex] = useState(0);
 
-  const openFullscreen = (image) => {
-    const index = images.findIndex(img => img.id === image.id);
-    setModalIndex(index);
-    setSelectedImage(image);
-    setIsPlaying(false);
-    document.body.style.overflow = 'hidden';
-  };
+
 
   const nextImage = () => {
     const nextIdx = (modalIndex + 1) % images.length;
@@ -93,7 +87,7 @@ const CinematicGallery = () => {
       document.removeEventListener('keydown', handleKeydown);
       document.removeEventListener('wheel', handleWheel);
     };
-  }, [selectedImage, modalIndex]);
+  }, [selectedImage, modalIndex, nextImage, prevImage]);
 
   const closeFullscreen = () => {
     setSelectedImage(null);

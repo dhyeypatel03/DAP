@@ -3,8 +3,7 @@ import "./Projects.css";
 
 function Projects() {
   const [repos, setRepos] = useState([]);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [initialProjectCount] = useState(6);
+
 
   useEffect(() => {
     fetch("https://api.github.com/users/dhyeypatel03/repos?sort=updated&per_page=12")

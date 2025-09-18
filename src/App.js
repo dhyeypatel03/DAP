@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 // Imports for your page sections
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Contact from "./components/Contact";
+
 import Footer from "./components/Footer";
 import YoutubeSection from "./components/YoutubeSection";
 import Projects from "./components/Projects";
@@ -27,11 +27,7 @@ I enjoy learning new technologies and creating cool projects.
 Sharing knowledge and experiences motivates me every day. 
 Life is all about growth, fun, and new memories!`;
 
-  const domeOptions = {
-    grayscale: false,
-    overlayBlurColor: "transparent",
-    fit: 0.9, // This makes the dome wider to fill the screen
-  };
+
 
   return (
     <div className="App">
