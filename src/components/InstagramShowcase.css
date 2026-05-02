@@ -1,0 +1,398 @@
+.instagram-showcase {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.instagram-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.instagram-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid transparent;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  padding: 2px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ig-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(240, 148, 51, 0.3);
+}
+
+.ig-icon::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.ig-icon::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  top: 12px;
+  right: 12px;
+}
+
+.instagram-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.instagram-title p {
+  font-size: 1rem;
+  color: #8b949e;
+  margin: 0.5rem 0 0;
+  font-weight: 300;
+}
+
+.follow-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 8px 32px rgba(240, 148, 51, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.follow-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.follow-btn:hover::before {
+  left: 100%;
+}
+
+.follow-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.follow-btn:hover .follow-icon {
+  transform: translateX(4px);
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  justify-items: center; /* Center the vertical cards */
+}
+
+/* Adjust grid when video is playing for better spacing */
+.instagram-grid.has-playing {
+  gap: 3rem;
+}
+
+.instagram-post {
+  position: relative;
+  aspect-ratio: 9/16; /* Base layout is already reel format */
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  z-index: 1;
+  max-height: 400px; /* Reasonable height for grid */
+}
+
+.instagram-post:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(240, 148, 51, 0.1);
+  border-color: rgba(240, 148, 51, 0.3);
+}
+
+/* Cinematic expansion on video play - more dramatic zoom effect */
+.instagram-post.playing {
+  transform: translateY(-20px) scale(1.25);
+  z-index: 10;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(240, 148, 51, 0.2);
+  border-color: rgba(240, 148, 51, 0.5);
+  max-height: 600px; /* Taller when playing for dramatic effect */
+}
+
+/* Background blur effect for other posts when one is playing */
+.instagram-grid.has-playing .instagram-post:not(.playing) {
+  filter: blur(1.5px) brightness(0.8);
+  transform: scale(0.96);
+  opacity: 0.7;
+}
+
+.post-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.post-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.instagram-post:hover .post-media img {
+  transform: scale(1.05);
+}
+
+.reel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail.hidden {
+  opacity: 0;
+}
+
+.preview-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  transform: scale(1.1);
+}
+
+.preview-video.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Enhanced video container for cinematic effect */
+.instagram-post.playing .preview-video {
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+
+
+
+
+/* Mobile interaction hints */
+.mobile-tap-hint,
+.mobile-fullscreen-hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 6;
+  white-space: nowrap;
+}
+
+.mobile-fullscreen-hint {
+  background: rgba(240, 148, 51, 0.9);
+}
+
+/* Cinematic glow effect for playing video */
+.instagram-post.playing::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, 
+    rgba(240, 148, 51, 0.3) 0%, 
+    rgba(230, 104, 60, 0.3) 25%, 
+    rgba(220, 39, 67, 0.3) 50%, 
+    rgba(204, 35, 102, 0.3) 75%, 
+    rgba(188, 24, 136, 0.3) 100%);
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0;
+  animation: cinematicGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes cinematicGlow {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(1.02); }
+}
+
+/* Smooth background transition */
+.instagram-showcase {
+  transition: background-color 0.6s ease;
+}
+
+.instagram-showcase:has(.instagram-post.playing) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .instagram-showcase {
+    padding: 2rem 1rem;
+  }
+  
+  .instagram-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .instagram-title {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .instagram-title h2 {
+    font-size: 2rem;
+  }
+  
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    transition: none; /* Remove transitions on mobile */
+  }
+  
+  /* Mobile-specific - no animations for performance */
+  .instagram-post {
+    max-height: 350px;
+    transition: none; /* Remove all transitions */
+    transform: none; /* Remove transforms */
+  }
+  
+  .instagram-post.playing {
+    transform: none; /* No scaling or movement */
+    max-height: 350px; /* Keep same height */
+    z-index: 2; /* Just bring to front */
+  }
+  
+  /* No blur effects on mobile for performance */
+  .instagram-grid.has-playing .instagram-post:not(.playing) {
+    filter: none;
+    transform: none;
+    opacity: 0.6; /* Just dim slightly */
+  }
+  
+  /* No gap changes on mobile */
+  .instagram-grid.has-playing {
+    gap: 1rem;
+  }
+  
+  /* Remove cinematic glow on mobile */
+  .instagram-post.playing::before {
+    display: none;
+  }
+  
+  /* Simplified video transitions */
+  .preview-video {
+    transition: opacity 0.2s ease; /* Faster, simpler transition */
+  }
+  
+  .thumbnail {
+    transition: opacity 0.2s ease; /* Faster, simpler transition */
+  }
+}
+
+@media (max-width: 480px) {
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .instagram-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .instagram-post {
+    max-height: 300px; /* Smaller height for very small screens */
+  }
+}

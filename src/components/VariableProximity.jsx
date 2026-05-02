@@ -5,8 +5,15 @@ import "./VariableProximity.css";
 function useAnimationFrame(callback) {
   useEffect(() => {
     let frameId;
-    const loop = () => {
-      callback();
+    let lastTime = 0;
+    const targetFPS = 30; // Reduce FPS for better performance
+    const interval = 1000 / targetFPS;
+    
+    const loop = (currentTime) => {
+      if (currentTime - lastTime >= interval) {
+        callback();
+        lastTime = currentTime;
+      }
       frameId = requestAnimationFrame(loop);
     };
     frameId = requestAnimationFrame(loop);
@@ -103,42 +110,50 @@ const VariableProximity = forwardRef((props, ref) => {
 
   useAnimationFrame(() => {
     if (!containerRef?.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
+    
     const { x, y } = mousePositionRef.current;
-    if (lastPositionRef.current.x === x && lastPositionRef.current.y === y) {
+    // Skip if mouse hasn't moved significantly
+    if (
+      Math.abs(lastPositionRef.current.x - x) < 5 && 
+      Math.abs(lastPositionRef.current.y - y) < 5
+    ) {
       return;
     }
     lastPositionRef.current = { x, y };
 
-    letterRefs.current.forEach((letterRef, index) => {
-      if (!letterRef) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
 
-      const rect = letterRef.getBoundingClientRect();
-      const letterCenterX = rect.left + rect.width / 2 - containerRect.left;
-      const letterCenterY = rect.top + rect.height / 2 - containerRect.top;
+    // Batch DOM operations for better performance
+    requestAnimationFrame(() => {
+      letterRefs.current.forEach((letterRef, index) => {
+        if (!letterRef) return;
 
-      const distance = calculateDistance(
-        mousePositionRef.current.x,
-        mousePositionRef.current.y,
-        letterCenterX,
-        letterCenterY
-      );
+        const rect = letterRef.getBoundingClientRect();
+        const letterCenterX = rect.left + rect.width / 2 - containerRect.left;
+        const letterCenterY = rect.top + rect.height / 2 - containerRect.top;
 
-      if (distance >= radius) {
-        letterRef.style.fontVariationSettings = fromFontVariationSettings;
-        return;
-      }
+        const distance = calculateDistance(x, y, letterCenterX, letterCenterY);
 
-      const falloffValue = calculateFalloff(distance);
-      const newSettings = parsedSettings
-        .map(({ axis, fromValue, toValue }) => {
-          const interpolatedValue = fromValue + (toValue - fromValue) * falloffValue;
-          return `'${axis}' ${interpolatedValue}`;
-        })
-        .join(", ");
+        if (distance >= radius) {
+          if (letterRef.style.fontVariationSettings !== fromFontVariationSettings) {
+            letterRef.style.fontVariationSettings = fromFontVariationSettings;
+          }
+          return;
+        }
 
-      interpolatedSettingsRef.current[index] = newSettings;
-      letterRef.style.fontVariationSettings = newSettings;
+        const falloffValue = calculateFalloff(distance);
+        const newSettings = parsedSettings
+          .map(({ axis, fromValue, toValue }) => {
+            const interpolatedValue = fromValue + (toValue - fromValue) * falloffValue;
+            return `'${axis}' ${Math.round(interpolatedValue)}`;
+          })
+          .join(", ");
+
+        if (interpolatedSettingsRef.current[index] !== newSettings) {
+          interpolatedSettingsRef.current[index] = newSettings;
+          letterRef.style.fontVariationSettings = newSettings;
+        }
+      });
     });
   });
 
