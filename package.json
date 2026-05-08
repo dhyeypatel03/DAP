@@ -2,7 +2,7 @@
   "name": "my-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dhyeypatel03.github.io/DAP",
+  "homepage": ".",
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.7.4",
